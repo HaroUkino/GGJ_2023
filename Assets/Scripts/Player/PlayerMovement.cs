@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour, IMovable {
     [SerializeField] float moveSpeed;
     [SerializeField] float rayCastDist = 1;
     [SerializeField] bool directionOverride;
+    private float positionX;
+    private float positionY; 
 
     public float MoveSpeed => moveSpeed;
 
@@ -16,7 +18,9 @@ public class PlayerMovement : MonoBehaviour, IMovable {
     bool _moving;
 
     void Awake() {
-        transform.position = new Vector2( Mathf.RoundToInt( transform.position.x ), Mathf.RoundToInt( transform.position.y ) );
+        positionX = 2.5f;
+        positionY = 2.5f;
+        transform.position = new Vector2(positionX, positionY);
         _sprRenderer = GetComponent<SpriteRenderer>();
     }
 
