@@ -6,12 +6,13 @@ public class PlayerConrtoller : MonoBehaviour {
 
     GameInput _input;
 
-    [SerializeField] PlayerMovement target;
+    IMovable target;
 
     private void OnEnable() => _input.Enable();
     private void OnDisable() => _input.Disable();
 
     private void Awake() {
+        target = GetComponent<IMovable>();
         RegisterCallbacks();
     }
 

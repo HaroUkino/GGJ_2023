@@ -5,42 +5,54 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour, IMovable {
 
     [SerializeField] float moveSpeed;
-    [SerializeField] float rayCastDist = .25f;
+    [SerializeField] float rayCastDist = 1;
+    [SerializeField] bool directionOverride;
 
     public float MoveSpeed => moveSpeed;
 
-    Vector2 _dir;
+    Vector2Int _dir;
     SpriteRenderer _sprRenderer;
+    Vector3 _target;
+    bool _moving;
 
     void Awake() {
+        transform.position = new Vector2( Mathf.RoundToInt( transform.position.x ), Mathf.RoundToInt( transform.position.y ) );
         _sprRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update() {
-        if( ValidateMovement() )
-            transform.position += new Vector3( _dir.x, _dir.y, 0 ) * Time.deltaTime * moveSpeed;
+        if ( ValidateMovement() && !_moving ) {
+            _moving = true;
+            _target = transform.position + new Vector3( _dir.x, _dir.y );
+        }
+        if( _moving ) {
+            if ( Vector3.Distance( transform.position, _target ) > .01f )
+                transform.position = Vector3.MoveTowards( transform.position, _target, Time.deltaTime * moveSpeed );
+            else
+                _moving = false;
+        }
     }
 
     bool ValidateMovement() {
-        var extend = _sprRenderer.bounds.extents;
-        var rayHit_topLeft = Physics2D.Raycast( new( transform.position.x - extend.x, transform.position.y + extend.y ), _dir, rayCastDist);
-        var rayHit_topRight = Physics2D.Raycast( new( transform.position.x + extend.x, transform.position.y + extend.y ), _dir, rayCastDist );
-        var rayHit_botLeft = Physics2D.Raycast( new( transform.position.x - extend.x, transform.position.y - extend.y ), _dir, rayCastDist );
-        var rayHit_botRight = Physics2D.Raycast( new( transform.position.x + extend.x, transform.position.y - extend.y ), _dir, rayCastDist );
-        return !(rayHit_botLeft || rayHit_botRight || rayHit_topRight || rayHit_topLeft);
+        var rayHit = Physics2D.Raycast( transform.position, _dir, rayCastDist);
+        return !rayHit;
     }
 
     private void OnDrawGizmos() {
         if ( _sprRenderer == null ) return;
         var extend = _sprRenderer.bounds.extents;
         Gizmos.color = Color.green;
-        Gizmos.DrawRay( new Vector3( transform.position.x - extend.x, transform.position.y + extend.y ), _dir * rayCastDist );
-        Gizmos.DrawRay( new Vector3( transform.position.x + extend.x, transform.position.y + extend.y ), _dir * rayCastDist );
-        Gizmos.DrawRay( new Vector3( transform.position.x - extend.x, transform.position.y - extend.y ), _dir * rayCastDist );
-        Gizmos.DrawRay( new Vector3( transform.position.x + extend.x, transform.position.y - extend.y ), _dir * rayCastDist );
+        Gizmos.DrawRay( transform.position, new Vector2( _dir.x, _dir.y ) * rayCastDist );
     }
 
     public void Move( Vector2 dir ) {
-        _dir = dir;
+        Vector2Int newDir = new Vector2Int( Mathf.RoundToInt( dir.x ), Mathf.RoundToInt( dir.y ) );
+        if ( Mathf.Abs( newDir.x ) + Mathf.Abs( newDir.y ) > 1 ) {
+            if ( directionOverride )
+                newDir = new Vector2Int( Mathf.Abs( _dir.x ) == 1 ? 0 : newDir.x, Mathf.Abs( _dir.y ) == 1 ? 0 : newDir.y );
+            else
+                return;
+        }
+        _dir = newDir;
     }
 }
