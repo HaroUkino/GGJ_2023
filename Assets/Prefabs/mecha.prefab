@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 1221644038438992114}
   - component: {fileID: 5343124914184395516}
   - component: {fileID: 2474039489763405335}
+  - component: {fileID: 8909572182637357268}
   m_Layer: 0
   m_Name: mecha
   m_TagString: Vehicle
@@ -230,3 +231,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSpd: 2
+--- !u!114 &8909572182637357268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760874221219513571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baeffcc61f0458542a03a8c21d50e976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphics: {fileID: 4042318843276062374}
+  animTime: 0.5

@@ -52,13 +52,15 @@ public class PlayerMovement : CharacterMovement, IResetable {
 
     void PlayCurrentAnim() => _anim.PlayAnimation( $"{( Vehicle != null ? Vehicle.VehicleAnimTag + " " : "")}{GetPlayerDirection()}" );
 
+    public void ForceStopMovement() => StopMovement();
+
     [ContextMenu( "Kill" )]
     public void Kill() {
         if ( lockMovement ) return;
         Debug.Log( "player diededed" );
         StopMovement();
         Interact();
-        gameController.ReestAllResetables();
+        gameController?.ReestAllResetables();
     }
 
     IEnumerator Fall() {

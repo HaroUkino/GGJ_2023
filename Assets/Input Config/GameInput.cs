@@ -53,6 +53,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""00b0f631-1f88-4c4c-82ac-8d9ea5198980"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -260,8 +269,41 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a7295ff-c3e6-48d6-9bd7-7b2201221afd"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d03679fb-ce3e-44e2-b43c-35f8518231e0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6da3bf36-01b4-4ec6-8142-797a50312f61"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -298,6 +340,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_Movement_Movement = m_Movement.FindAction("Movement", throwIfNotFound: true);
         m_Movement_Interaction = m_Movement.FindAction("Interaction", throwIfNotFound: true);
         m_Movement_Reset = m_Movement.FindAction("Reset", throwIfNotFound: true);
+        m_Movement_Menu = m_Movement.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -360,6 +403,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Movement;
     private readonly InputAction m_Movement_Interaction;
     private readonly InputAction m_Movement_Reset;
+    private readonly InputAction m_Movement_Menu;
     public struct MovementActions
     {
         private @GameInput m_Wrapper;
@@ -367,6 +411,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Movement_Movement;
         public InputAction @Interaction => m_Wrapper.m_Movement_Interaction;
         public InputAction @Reset => m_Wrapper.m_Movement_Reset;
+        public InputAction @Menu => m_Wrapper.m_Movement_Menu;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -385,6 +430,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Reset.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnReset;
                 @Reset.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnReset;
                 @Reset.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnReset;
+                @Menu.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnMenu;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -398,6 +446,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Reset.started += instance.OnReset;
                 @Reset.performed += instance.OnReset;
                 @Reset.canceled += instance.OnReset;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
@@ -425,5 +476,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }
