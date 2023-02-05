@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2417283867192064914}
   - component: {fileID: 231047281289966950}
   - component: {fileID: 2828167929836992955}
-  m_Layer: 2
+  - component: {fileID: 6600637317847262082}
+  m_Layer: 6
   m_Name: Vine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBeforeFall: 0.2
-  animationSpd: 5
   graphics: {fileID: 859760395173427307}
+  resetAnimation: {fileID: 6600637317847262082}
 --- !u!61 &2828167929836992955
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -75,6 +76,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.825, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6600637317847262082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479507052231968288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d080907b1dd024f83b0676a9594f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSpd: 2
 --- !u!1 &6099421202494227456
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 859760395173427307}
   - component: {fileID: 5576298805363962896}
-  m_Layer: 2
+  m_Layer: 6
   m_Name: graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}

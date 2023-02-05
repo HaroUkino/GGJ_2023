@@ -6,13 +6,13 @@ public class PlayerConrtoller : MonoBehaviour {
 
     GameInput _input;
 
-    IMovable target;
+    PlayerMovement target;
 
     private void OnEnable() => _input.Enable();
     private void OnDisable() => _input.Disable();
 
     private void Awake() {
-        target = GetComponent<IMovable>();
+        target = GetComponent<PlayerMovement>();
         RegisterCallbacks();
     }
 
@@ -21,6 +21,7 @@ public class PlayerConrtoller : MonoBehaviour {
         _input.Movement.Movement.performed += ctx => Move( ctx.ReadValue<Vector2>() );
         _input.Movement.Movement.canceled += ctx => Move( new( 0, 0 ) );
         _input.Movement.Interaction.performed += ctx => Interact();
+        _input.Movement.Reset.performed += ctx => Restart();
     }
 
     void Move( Vector2 dir ) {
@@ -31,4 +32,5 @@ public class PlayerConrtoller : MonoBehaviour {
         target?.Interact();
     }
 
+    void Restart() => target.Kill();
 }

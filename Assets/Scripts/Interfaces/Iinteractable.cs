@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public interface Iinteractable {
+public interface IInteractable {
 
     string InteractText { get; }
 
-    void Interact();
+    void Interact( GameObject other );
 }
