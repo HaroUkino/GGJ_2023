@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1826451066, guid: a52f8835b21bb794f9e60a413891c678, type: 3}
+  m_Sprite: {fileID: -794370472, guid: 4e5856984355b5642bd4680bb3a51ff1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 2668932866030703652}
   - component: {fileID: 8414918805999282073}
   - component: {fileID: 1225606404001627124}
-  - component: {fileID: 7610487828110085347}
   - component: {fileID: 137876192964842662}
+  - component: {fileID: 2813782181995003575}
   m_Layer: 0
   m_Name: Boulder
   m_TagString: Untagged
@@ -137,7 +137,7 @@ MonoBehaviour:
   rayCastCenterOffset: 0.15
   directionOverride: 0
   sprRenderer: {fileID: 40759462865127923}
-  resetAnimation: {fileID: 7610487828110085347}
+  resetAnimation: {fileID: 2813782181995003575}
 --- !u!58 &1225606404001627124
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -154,19 +154,6 @@ CircleCollider2D:
   m_Offset: {x: 0.5, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &7610487828110085347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8893642647801013842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d080907b1dd024f83b0676a9594f4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationSpd: 2
 --- !u!114 &137876192964842662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +168,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphics: {fileID: 8258739815978031060}
   animTime: 0.5
+--- !u!114 &2813782181995003575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893642647801013842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d080907b1dd024f83b0676a9594f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSpd: 2
