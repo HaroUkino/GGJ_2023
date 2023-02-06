@@ -6,7 +6,7 @@ public class CharacterMovement : MonoBehaviour, IMovable {
 
     [SerializeField] float moveSpeed;
     [SerializeField] float rayCastDist = 1, rayCastCenterOffset;
-    [SerializeField] bool directionOverride;
+    [SerializeField] bool directionOverride, allowVehicle;
     [SerializeField] protected SpriteRenderer sprRenderer;
 
     public float MoveSpeed => Vehicle != null ? Vehicle.MoveSpeed : moveSpeed ;
@@ -48,7 +48,7 @@ public class CharacterMovement : MonoBehaviour, IMovable {
         if ( rayHit ) {
             var interactable = rayHit.transform.GetComponent<IInteractable>();
             if ( interactable != null ) interactable.Interact( gameObject );
-            if ( rayHit.transform.CompareTag( "Vehicle" ) ) return Vehicle == null;
+            if ( rayHit.transform.CompareTag( "Vehicle" ) ) return Vehicle == null && allowVehicle;
         }
         return !rayHit;
     }
