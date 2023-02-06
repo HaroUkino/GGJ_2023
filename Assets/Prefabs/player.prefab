@@ -171,6 +171,7 @@ MonoBehaviour:
   rayCastDist: 1
   rayCastCenterOffset: 0.15
   directionOverride: 1
+  allowVehicle: 1
   sprRenderer: {fileID: 904695265222480908}
   gameController: {fileID: 0}
 --- !u!114 &4524721830646615083
