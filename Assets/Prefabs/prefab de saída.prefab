@@ -203,6 +203,10 @@ PrefabInstance:
       propertyPath: targetScene
       value: Cena2
       objectReference: {fileID: 0}
+    - target: {fileID: 1722456398087603409, guid: ebf7921df4732b0479d9b8df76e18e7e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1930972718, guid: a52f8835b21bb794f9e60a413891c678, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebf7921df4732b0479d9b8df76e18e7e, type: 3}
 --- !u!4 &2246484019668539298 stripped
