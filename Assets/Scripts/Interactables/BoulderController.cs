@@ -8,7 +8,7 @@ public class BoulderController : CharacterMovement, IInteractable, IResetable {
 
     Vector2 _startPosition;
 
-    void Awake() { 
+    void Awake() {
         _startPosition = transform.position;
         raycastLayers = new string[] { "Default", "Obstacle" };
     }

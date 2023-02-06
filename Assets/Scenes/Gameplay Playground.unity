@@ -840,6 +840,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8686914384368155858, guid: 3ec218fa20060944aba268f43a455ced, type: 3}
+      propertyPath: allowVehicle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686914384368155858, guid: 3ec218fa20060944aba268f43a455ced, type: 3}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1005302505}
